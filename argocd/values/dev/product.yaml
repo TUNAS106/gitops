@@ -1,0 +1,10 @@
+backend:
+  image:
+    repository: tunas106/yas-product
+    tag: latest
+  ingress:
+    enabled: true
+    host: api-dev.yas.local.com
+    path: /product
+  serviceMonitor:
+    enabled: false

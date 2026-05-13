@@ -1,0 +1,18 @@
+applicationConfig:
+  spring:
+    security:
+      oauth2:
+        resourceserver:
+          jwt:
+            issuer-uri: http://identity.yas.local.com/realms/Yas
+  springdoc:
+    oauthflow:
+      authorization-url: http://identity.yas.local.com/realms/Yas/protocol/openid-connect/auth
+      token-url: http://identity.yas.local.com/realms/Yas/protocol/openid-connect/token
+mediaApplicationConfig:
+  yas:
+    publicUrl: http://api-staging.yas.local.com/media
+paymentPaypalApplicationConfig:
+  yas:
+    public:
+      url: http://storefront-staging.yas.local.com/complete-payment

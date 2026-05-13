@@ -1,0 +1,9 @@
+backend:
+  image:
+    repository: tunas106/yas-storefront-bff
+    tag: v1.0.9
+  ingress:
+    host: storefront-staging.yas.local.com
+    path: /
+  serviceMonitor:
+    enabled: false

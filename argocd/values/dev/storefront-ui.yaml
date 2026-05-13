@@ -1,0 +1,7 @@
+ui:
+  image:
+    repository: tunas106/yas-storefront
+    tag: f31c362
+  extraEnvs:
+    - name: API_BASE_PATH
+      value: http://storefront-dev.yas.local.com/api
