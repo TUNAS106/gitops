@@ -1,0 +1,10 @@
+backend:
+  image:
+    repository: tunas106/yas-payment
+    tag: staging-latest
+  ingress:
+    enabled: true
+    host: api-preview.yas.local.com
+    path: /payment
+  serviceMonitor:
+    enabled: false

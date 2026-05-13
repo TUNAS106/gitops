@@ -1,0 +1,10 @@
+backend:
+  image:
+    repository: tunas106/yas-search
+    tag: v1.0.9
+  ingress:
+    enabled: true
+    host: api-staging.yas.local.com
+    path: /search
+  serviceMonitor:
+    enabled: false

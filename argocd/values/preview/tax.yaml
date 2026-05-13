@@ -1,10 +1,10 @@
 backend:
   image:
     repository: tunas106/yas-tax
-    tag: latest
+    tag: staging-latest
   ingress:
     enabled: true
-    host: api-dev.yas.local.com
+    host: api-preview.yas.local.com
     path: /tax
   serviceMonitor:
     enabled: false

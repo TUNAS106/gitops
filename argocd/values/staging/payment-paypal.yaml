@@ -1,0 +1,10 @@
+backend:
+  image:
+    repository: tunas106/yas-payment-paypal
+    tag: v1.0.9
+  ingress:
+    enabled: true
+    host: api-staging.yas.local.com
+    path: /payment-paypal
+  serviceMonitor:
+    enabled: false

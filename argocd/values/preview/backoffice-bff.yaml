@@ -1,0 +1,9 @@
+backend:
+  image:
+    repository: tunas106/yas-backoffice-bff
+    tag: staging-latest
+  ingress:
+    host: backoffice-preview.yas.local.com
+    path: /
+  serviceMonitor:
+    enabled: false

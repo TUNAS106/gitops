@@ -1,0 +1,10 @@
+backend:
+  image:
+    repository: tunas106/yas-media
+    tag: v1.0.9
+  ingress:
+    enabled: true
+    host: api-staging.yas.local.com
+    path: /media
+  serviceMonitor:
+    enabled: false

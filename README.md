@@ -44,7 +44,7 @@ Expose service:
 gitops/
   argocd/
     applications/
-      yas-dev.yaml
+      yas-preview.yaml
       yas-staging.yaml
   charts/
     ...
@@ -57,16 +57,16 @@ Khong nen de Application trong GitOps repo tham chieu `../k8s/charts` cua source
 
 ## Moi truong
 
-`dev`:
+`preview`:
 
-- Namespace: `yas-dev`.
-- ArgoCD root application: `yas-dev`.
+- Namespace: `yas-preview`.
+- ArgoCD root application: `yas-preview`.
 - Host demo:
-  - `api-dev.yas.local.com`
-  - `backoffice-dev.yas.local.com`
-  - `storefront-dev.yas.local.com`
-- Image tag ban dau: `latest`.
-- CI nen thay `latest` bang commit SHA moi nhat sau khi build va push image.
+  - `api-preview.yas.local.com`
+  - `backoffice-preview.yas.local.com`
+  - `storefront-preview.yas.local.com`
+- Image tag nen bat dau bang `staging-latest`.
+- Jenkins preview deploy se thay tag cua dung service dang test bang branch/commit tag.
 
 `staging`:
 
@@ -107,7 +107,7 @@ thanh URL repo GitOps that cua ban.
 Sau khi cai ArgoCD trong namespace `argocd`, apply root application:
 
 ```bash
-kubectl apply -f argocd/applications/yas-dev.yaml
+kubectl apply -f argocd/applications/yas-preview.yaml
 kubectl apply -f argocd/applications/yas-staging.yaml
 ```
 
@@ -116,40 +116,55 @@ Root application khong tao Application con nua:
 ```text
 Khong con Application con. Moi moi truong chi co mot ArgoCD Application:
 
-- yas-dev
+- yas-preview
 - yas-staging
 ```
 
 Moi Application dung `spec.sources` de sync nhieu Helm chart trong cung mot moi truong. Image repository/tag khong nam truc tiep trong Application spec nua, ma duoc tach ra cac file values:
 
 ```text
-argocd/values/dev/<service>.yaml
+argocd/values/preview/<service>.yaml
 argocd/values/staging/<service>.yaml
 ```
 
-Cac service dang active cho demo gom:
+Tat ca chart application chinh da duoc bat trong ca hai moi truong:
 
-- `yas-configuration`
-- `storefront-bff`
-- `storefront-ui`
-- `cart`
-- `customer`
-- `product`
-- `tax`
-
-Nhung service chua can demo duoc comment trong `argocd/applications/yas-dev.yaml` va `argocd/applications/yas-staging.yaml` voi ly do `disabled for lightweight ArgoCD demo`.
+```text
+yas-configuration
+backoffice-bff
+backoffice-ui
+storefront-bff
+storefront-ui
+cart
+customer
+inventory
+location
+media
+order
+payment
+payment-paypal
+product
+promotion
+rating
+recommendation
+sampledata
+search
+tax
+webhook
+swagger-ui
+```
 
 ## CI cap nhat image tag
 
 ArgoCD theo doi Git, khong tu biet Docker Hub co image moi. Sau khi CI build va push image, CI phai commit thay doi image tag vao GitOps repo.
 
-Vi du dev sau khi push `main`:
+Vi du preview khi Jenkins build service `tax` tu branch developer:
 
 ```bash
-yq -i '.backend.image.tag = "a1b2c3d"' argocd/values/dev/tax.yaml
+yq -i '.backend.image.tag = "dev-tax-a1b2c3d"' argocd/values/preview/tax.yaml
 
-git add argocd/values/dev/tax.yaml
-git commit -m "Deploy dev tax image a1b2c3d"
+git add argocd/values/preview/tax.yaml
+git commit -m "Deploy preview tax image dev-tax-a1b2c3d"
 git push
 ```
 
@@ -163,10 +178,10 @@ git commit -m "Deploy staging tax v1.2.3"
 git push
 ```
 
-Neu muon update service UI thi doi `.ui.image.tag` thay vi `.backend.image.tag`. Vi du update `storefront-ui` o dev:
+Neu muon update service UI thi doi `.ui.image.tag` thay vi `.backend.image.tag`. Vi du update `storefront-ui` o preview:
 
 ```bash
-yq -i '.ui.image.tag = "a1b2c3d"' argocd/values/dev/storefront-ui.yaml
+yq -i '.ui.image.tag = "dev-storefront-a1b2c3d"' argocd/values/preview/storefront-ui.yaml
 ```
 
 ## Rollback bang Git
@@ -192,9 +207,9 @@ kubectl get ns | grep yas
 Kiem tra pod/service/ingress:
 
 ```bash
-kubectl get pod -n yas-dev
-kubectl get svc -n yas-dev
-kubectl get ingress -n yas-dev
+kubectl get pod -n yas-preview
+kubectl get svc -n yas-preview
+kubectl get ingress -n yas-preview
 
 kubectl get pod -n yas-staging
 kubectl get svc -n yas-staging
@@ -209,14 +224,14 @@ kubectl get applications -n argocd
 
 Trong ArgoCD UI, ban se thay:
 
-- `yas-dev`
+- `yas-preview`
 - `yas-staging`
 
 ## Luu y khi demo
 
-- Jenkins `developer_build` van nen chi deploy preview, khong deploy vao `yas-dev` hoac `yas-staging`.
-- ArgoCD quan ly `yas-dev` va `yas-staging`.
+- Jenkins `preview deploy` chi nen cap nhat values trong `argocd/values/preview`, khong deploy truc tiep bang `kubectl apply`.
+- ArgoCD quan ly `yas-preview` va `yas-staging`.
 - Ha tang nang nhu PostgreSQL, Kafka, Elasticsearch, Keycloak, Redis van dung chung tu cac namespace ha tang cu.
-- Neu Minikube thieu tai nguyen, giu cac service khong can demo o trang thai comment trong `argocd/applications/*.yaml`.
-- Cac host `*-dev.yas.local.com` va `*-staging.yas.local.com` can duoc them vao file hosts tro ve IP Minikube.
-- Neu login Keycloak bi loi redirect URL, can them cac URL dev/staging vao Keycloak client redirect URI.
+- Vi tat ca service da duoc bat, Minikube/VM can du tai nguyen hoac phai scale bot service khi demo tren may yeu.
+- Cac host `*-preview.yas.local.com` va `*-staging.yas.local.com` can duoc them vao file hosts tro ve IP Minikube.
+- Neu login Keycloak bi loi redirect URL, can them cac URL preview/staging vao Keycloak client redirect URI.

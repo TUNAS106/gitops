@@ -1,0 +1,10 @@
+backend:
+  image:
+    repository: tunas106/yas-order
+    tag: v1.0.9
+  ingress:
+    enabled: true
+    host: api-staging.yas.local.com
+    path: /order
+  serviceMonitor:
+    enabled: false

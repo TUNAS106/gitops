@@ -1,0 +1,10 @@
+backend:
+  image:
+    repository: tunas106/yas-sampledata
+    tag: staging-latest
+  ingress:
+    enabled: true
+    host: api-preview.yas.local.com
+    path: /sampledata
+  serviceMonitor:
+    enabled: false

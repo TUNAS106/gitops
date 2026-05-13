@@ -1,0 +1,24 @@
+image:
+  repository: swaggerapi/swagger-ui
+  tag: v5.17.14
+ingress:
+  enabled: true
+  host: api-preview.yas.local.com
+  hosts:
+    - host: api-preview.yas.local.com
+      paths:
+        - path: /swagger-ui
+          pathType: ImplementationSpecific
+urls: >-
+  [{"url":"http://api-preview.yas.local.com/product/v3/api-docs","name":"Product"},
+  {"url":"http://api-preview.yas.local.com/media/v3/api-docs","name":"Media"},
+  {"url":"http://api-preview.yas.local.com/customer/v3/api-docs","name":"Customer"},
+  {"url":"http://api-preview.yas.local.com/cart/v3/api-docs","name":"Cart"},
+  {"url":"http://api-preview.yas.local.com/rating/v3/api-docs","name":"Rating"},
+  {"url":"http://api-preview.yas.local.com/order/v3/api-docs","name":"Order"},
+  {"url":"http://api-preview.yas.local.com/payment/v3/api-docs","name":"Payment"},
+  {"url":"http://api-preview.yas.local.com/location/v3/api-docs","name":"Location"},
+  {"url":"http://api-preview.yas.local.com/inventory/v3/api-docs","name":"Inventory"},
+  {"url":"http://api-preview.yas.local.com/tax/v3/api-docs","name":"Tax"},
+  {"url":"http://api-preview.yas.local.com/promotion/v3/api-docs","name":"Promotion"},
+  {"url":"http://api-preview.yas.local.com/search/v3/api-docs","name":"Search"}]

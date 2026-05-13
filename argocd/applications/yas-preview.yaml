@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: yas-staging
+  name: yas-preview
   namespace: argocd
 spec:
   project: default
@@ -16,7 +16,7 @@ spec:
       helm:
         releaseName: yas-configuration
         valueFiles:
-          - $values/argocd/values/staging/yas-configuration.yaml
+          - $values/argocd/values/preview/yas-configuration.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -24,7 +24,7 @@ spec:
       helm:
         releaseName: backoffice-bff
         valueFiles:
-          - $values/argocd/values/staging/backoffice-bff.yaml
+          - $values/argocd/values/preview/backoffice-bff.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -32,7 +32,7 @@ spec:
       helm:
         releaseName: backoffice-ui
         valueFiles:
-          - $values/argocd/values/staging/backoffice-ui.yaml
+          - $values/argocd/values/preview/backoffice-ui.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -40,7 +40,7 @@ spec:
       helm:
         releaseName: storefront-bff
         valueFiles:
-          - $values/argocd/values/staging/storefront-bff.yaml
+          - $values/argocd/values/preview/storefront-bff.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -48,7 +48,7 @@ spec:
       helm:
         releaseName: storefront-ui
         valueFiles:
-          - $values/argocd/values/staging/storefront-ui.yaml
+          - $values/argocd/values/preview/storefront-ui.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -56,7 +56,7 @@ spec:
       helm:
         releaseName: cart
         valueFiles:
-          - $values/argocd/values/staging/cart.yaml
+          - $values/argocd/values/preview/cart.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -64,7 +64,7 @@ spec:
       helm:
         releaseName: customer
         valueFiles:
-          - $values/argocd/values/staging/customer.yaml
+          - $values/argocd/values/preview/customer.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -72,7 +72,7 @@ spec:
       helm:
         releaseName: inventory
         valueFiles:
-          - $values/argocd/values/staging/inventory.yaml
+          - $values/argocd/values/preview/inventory.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -80,7 +80,7 @@ spec:
       helm:
         releaseName: location
         valueFiles:
-          - $values/argocd/values/staging/location.yaml
+          - $values/argocd/values/preview/location.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -88,7 +88,7 @@ spec:
       helm:
         releaseName: media
         valueFiles:
-          - $values/argocd/values/staging/media.yaml
+          - $values/argocd/values/preview/media.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -96,7 +96,7 @@ spec:
       helm:
         releaseName: order
         valueFiles:
-          - $values/argocd/values/staging/order.yaml
+          - $values/argocd/values/preview/order.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -104,7 +104,7 @@ spec:
       helm:
         releaseName: payment
         valueFiles:
-          - $values/argocd/values/staging/payment.yaml
+          - $values/argocd/values/preview/payment.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -112,7 +112,7 @@ spec:
       helm:
         releaseName: payment-paypal
         valueFiles:
-          - $values/argocd/values/staging/payment-paypal.yaml
+          - $values/argocd/values/preview/payment-paypal.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -120,15 +120,7 @@ spec:
       helm:
         releaseName: product
         valueFiles:
-          - $values/argocd/values/staging/product.yaml
-
-    - repoURL: https://github.com/TUNAS106/yas-gitops.git
-      targetRevision: main
-      path: charts/tax
-      helm:
-        releaseName: tax
-        valueFiles:
-          - $values/argocd/values/staging/tax.yaml
+          - $values/argocd/values/preview/product.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -136,7 +128,7 @@ spec:
       helm:
         releaseName: promotion
         valueFiles:
-          - $values/argocd/values/staging/promotion.yaml
+          - $values/argocd/values/preview/promotion.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -144,7 +136,7 @@ spec:
       helm:
         releaseName: rating
         valueFiles:
-          - $values/argocd/values/staging/rating.yaml
+          - $values/argocd/values/preview/rating.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -152,7 +144,7 @@ spec:
       helm:
         releaseName: recommendation
         valueFiles:
-          - $values/argocd/values/staging/recommendation.yaml
+          - $values/argocd/values/preview/recommendation.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -160,7 +152,7 @@ spec:
       helm:
         releaseName: sampledata
         valueFiles:
-          - $values/argocd/values/staging/sampledata.yaml
+          - $values/argocd/values/preview/sampledata.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -168,7 +160,15 @@ spec:
       helm:
         releaseName: search
         valueFiles:
-          - $values/argocd/values/staging/search.yaml
+          - $values/argocd/values/preview/search.yaml
+
+    - repoURL: https://github.com/TUNAS106/yas-gitops.git
+      targetRevision: main
+      path: charts/tax
+      helm:
+        releaseName: tax
+        valueFiles:
+          - $values/argocd/values/preview/tax.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -176,7 +176,7 @@ spec:
       helm:
         releaseName: webhook
         valueFiles:
-          - $values/argocd/values/staging/webhook.yaml
+          - $values/argocd/values/preview/webhook.yaml
 
     - repoURL: https://github.com/TUNAS106/yas-gitops.git
       targetRevision: main
@@ -184,10 +184,10 @@ spec:
       helm:
         releaseName: swagger-ui
         valueFiles:
-          - $values/argocd/values/staging/swagger-ui.yaml
+          - $values/argocd/values/preview/swagger-ui.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: yas-staging
+    namespace: yas-preview
   syncPolicy:
     automated:
       prune: true
