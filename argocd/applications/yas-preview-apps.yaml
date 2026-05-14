@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yas-preview-apps
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      ref: values
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/cart
+      helm:
+        releaseName: cart
+        valueFiles:
+          - $values/argocd/values/preview/cart.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/order
+      helm:
+        releaseName: order
+        valueFiles:
+          - $values/argocd/values/preview/order.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/backoffice-bff
+      helm:
+        releaseName: backoffice-bff
+        valueFiles:
+          - $values/argocd/values/preview/backoffice-bff.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/storefront-bff
+      helm:
+        releaseName: storefront-bff
+        valueFiles:
+          - $values/argocd/values/preview/storefront-bff.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yas-preview
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

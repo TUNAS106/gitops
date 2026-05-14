@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yas-preview-ui
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      ref: values
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/backoffice-ui
+      helm:
+        releaseName: backoffice-ui
+        valueFiles:
+          - $values/argocd/values/preview/backoffice-ui.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/storefront-ui
+      helm:
+        releaseName: storefront-ui
+        valueFiles:
+          - $values/argocd/values/preview/storefront-ui.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/swagger-ui
+      helm:
+        releaseName: swagger-ui
+        valueFiles:
+          - $values/argocd/values/preview/swagger-ui.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yas-preview
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

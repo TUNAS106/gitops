@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yas-preview-core
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      ref: values
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/yas-configuration
+      helm:
+        releaseName: yas-configuration
+        valueFiles:
+          - $values/argocd/values/preview/yas-configuration.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/product
+      helm:
+        releaseName: product
+        valueFiles:
+          - $values/argocd/values/preview/product.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/customer
+      helm:
+        releaseName: customer
+        valueFiles:
+          - $values/argocd/values/preview/customer.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/inventory
+      helm:
+        releaseName: inventory
+        valueFiles:
+          - $values/argocd/values/preview/inventory.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: yas-preview
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
