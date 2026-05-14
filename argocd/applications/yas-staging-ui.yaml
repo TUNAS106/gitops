@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: yas-preview-ui
+  name: yas-staging-ui
   namespace: argocd
 spec:
   project: default
@@ -16,7 +16,7 @@ spec:
       helm:
         releaseName: backoffice-ui
         valueFiles:
-          - $values/argocd/values/preview/backoffice-ui.yaml
+          - $values/argocd/values/staging/backoffice-ui.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -24,7 +24,7 @@ spec:
       helm:
         releaseName: backoffice-bff
         valueFiles:
-          - $values/argocd/values/preview/backoffice-bff.yaml
+          - $values/argocd/values/staging/backoffice-bff.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -32,7 +32,7 @@ spec:
       helm:
         releaseName: storefront-ui
         valueFiles:
-          - $values/argocd/values/preview/storefront-ui.yaml
+          - $values/argocd/values/staging/storefront-ui.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -40,7 +40,7 @@ spec:
       helm:
         releaseName: storefront-bff
         valueFiles:
-          - $values/argocd/values/preview/storefront-bff.yaml
+          - $values/argocd/values/staging/storefront-bff.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -48,10 +48,10 @@ spec:
       helm:
         releaseName: swagger-ui
         valueFiles:
-          - $values/argocd/values/preview/swagger-ui.yaml
+          - $values/argocd/values/staging/swagger-ui.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: yas-preview
+    namespace: yas-staging
   syncPolicy:
     automated:
       prune: true

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: yas-preview-ui
+  name: yas-staging-core
   namespace: argocd
 spec:
   project: default
@@ -12,46 +12,38 @@ spec:
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
-      path: charts/backoffice-ui
+      path: charts/yas-configuration
       helm:
-        releaseName: backoffice-ui
+        releaseName: yas-configuration
         valueFiles:
-          - $values/argocd/values/preview/backoffice-ui.yaml
+          - $values/argocd/values/staging/yas-configuration.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
-      path: charts/backoffice-bff
+      path: charts/product
       helm:
-        releaseName: backoffice-bff
+        releaseName: product
         valueFiles:
-          - $values/argocd/values/preview/backoffice-bff.yaml
+          - $values/argocd/values/staging/product.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
-      path: charts/storefront-ui
+      path: charts/customer
       helm:
-        releaseName: storefront-ui
+        releaseName: customer
         valueFiles:
-          - $values/argocd/values/preview/storefront-ui.yaml
+          - $values/argocd/values/staging/customer.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
-      path: charts/storefront-bff
+      path: charts/inventory
       helm:
-        releaseName: storefront-bff
+        releaseName: inventory
         valueFiles:
-          - $values/argocd/values/preview/storefront-bff.yaml
-
-    - repoURL: https://github.com/TUNAS106/gitops.git
-      targetRevision: main
-      path: charts/swagger-ui
-      helm:
-        releaseName: swagger-ui
-        valueFiles:
-          - $values/argocd/values/preview/swagger-ui.yaml
+          - $values/argocd/values/staging/inventory.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: yas-preview
+    namespace: yas-staging
   syncPolicy:
     automated:
       prune: true

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: yas-preview-apps
+  name: yas-staging-apps
   namespace: argocd
 spec:
   project: default
@@ -16,7 +16,7 @@ spec:
       helm:
         releaseName: cart
         valueFiles:
-          - $values/argocd/values/preview/cart.yaml
+          - $values/argocd/values/staging/cart.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -24,7 +24,7 @@ spec:
       helm:
         releaseName: order
         valueFiles:
-          - $values/argocd/values/preview/order.yaml
+          - $values/argocd/values/staging/order.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -32,7 +32,7 @@ spec:
       helm:
         releaseName: location
         valueFiles:
-          - $values/argocd/values/preview/location.yaml
+          - $values/argocd/values/staging/location.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -40,7 +40,7 @@ spec:
       helm:
         releaseName: media
         valueFiles:
-          - $values/argocd/values/preview/media.yaml
+          - $values/argocd/values/staging/media.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -48,7 +48,7 @@ spec:
       helm:
         releaseName: promotion
         valueFiles:
-          - $values/argocd/values/preview/promotion.yaml
+          - $values/argocd/values/staging/promotion.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -56,7 +56,7 @@ spec:
       helm:
         releaseName: rating
         valueFiles:
-          - $values/argocd/values/preview/rating.yaml
+          - $values/argocd/values/staging/rating.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -64,7 +64,7 @@ spec:
       helm:
         releaseName: recommendation
         valueFiles:
-          - $values/argocd/values/preview/recommendation.yaml
+          - $values/argocd/values/staging/recommendation.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -72,11 +72,11 @@ spec:
       helm:
         releaseName: sampledata
         valueFiles:
-          - $values/argocd/values/preview/sampledata.yaml
+          - $values/argocd/values/staging/sampledata.yaml
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: yas-preview
+    namespace: yas-staging
   syncPolicy:
     automated:
       prune: true
