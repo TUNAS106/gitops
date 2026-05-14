@@ -100,35 +100,11 @@ spec:
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
-      path: charts/payment
-      helm:
-        releaseName: payment
-        valueFiles:
-          - $values/argocd/values/staging/payment.yaml
-
-    - repoURL: https://github.com/TUNAS106/gitops.git
-      targetRevision: main
-      path: charts/payment-paypal
-      helm:
-        releaseName: payment-paypal
-        valueFiles:
-          - $values/argocd/values/staging/payment-paypal.yaml
-
-    - repoURL: https://github.com/TUNAS106/gitops.git
-      targetRevision: main
       path: charts/product
       helm:
         releaseName: product
         valueFiles:
           - $values/argocd/values/staging/product.yaml
-
-    - repoURL: https://github.com/TUNAS106/gitops.git
-      targetRevision: main
-      path: charts/tax
-      helm:
-        releaseName: tax
-        valueFiles:
-          - $values/argocd/values/staging/tax.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
@@ -161,14 +137,6 @@ spec:
         releaseName: sampledata
         valueFiles:
           - $values/argocd/values/staging/sampledata.yaml
-
-    - repoURL: https://github.com/TUNAS106/gitops.git
-      targetRevision: main
-      path: charts/search
-      helm:
-        releaseName: search
-        valueFiles:
-          - $values/argocd/values/staging/search.yaml
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
