@@ -1,7 +1,7 @@
 backend:
   image:
     repository: tunas106/yas-recommendation
-    tag: v1.0
+    tag: v1.1
   ingress:
     enabled: true
     host: api-staging.yas.local.com
