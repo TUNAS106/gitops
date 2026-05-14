@@ -1,7 +1,7 @@
 backend:
   image:
     repository: tunas106/yas-backoffice-bff
-    tag: v1.0.9
+    tag: v1.0
   ingress:
     host: backoffice-staging.yas.local.com
     path: /
