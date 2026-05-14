@@ -28,6 +28,54 @@ spec:
 
     - repoURL: https://github.com/TUNAS106/gitops.git
       targetRevision: main
+      path: charts/location
+      helm:
+        releaseName: location
+        valueFiles:
+          - $values/argocd/values/preview/location.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/media
+      helm:
+        releaseName: media
+        valueFiles:
+          - $values/argocd/values/preview/media.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/promotion
+      helm:
+        releaseName: promotion
+        valueFiles:
+          - $values/argocd/values/preview/promotion.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/rating
+      helm:
+        releaseName: rating
+        valueFiles:
+          - $values/argocd/values/preview/rating.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/recommendation
+      helm:
+        releaseName: recommendation
+        valueFiles:
+          - $values/argocd/values/preview/recommendation.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
+      path: charts/sampledata
+      helm:
+        releaseName: sampledata
+        valueFiles:
+          - $values/argocd/values/preview/sampledata.yaml
+
+    - repoURL: https://github.com/TUNAS106/gitops.git
+      targetRevision: main
       path: charts/backoffice-bff
       helm:
         releaseName: backoffice-bff
