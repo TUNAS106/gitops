@@ -1,7 +1,7 @@
 backend:
   image:
     repository: tunas106/yas-inventory
-    tag: staging-latest
+    tag: latest
   ingress:
     enabled: true
     host: api-preview.yas.local.com
