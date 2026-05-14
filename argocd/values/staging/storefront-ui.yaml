@@ -4,4 +4,4 @@ ui:
     tag: v1.0
   extraEnvs:
     - name: API_BASE_PATH
-      value: http://storefront-staging.yas.local.com/api
+      value: http://storefront-bff/api

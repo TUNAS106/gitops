@@ -4,4 +4,4 @@ ui:
     tag: latest
   extraEnvs:
     - name: API_BASE_PATH
-      value: http://backoffice-preview.yas.local.com/api
+      value: http://backoffice-bff/api
