@@ -6,4 +6,4 @@ backend:
     host: storefront-staging.yas.local.com
     path: /
   serviceMonitor:
-    enabled: false
+    enabled: true
