@@ -1,7 +1,7 @@
 ui:
   image:
     repository: tunas106/yas-backoffice
-    tag: v1.1
+    tag: v1.2
   extraEnvs:
     - name: API_BASE_PATH
       value: http://backoffice-bff/api

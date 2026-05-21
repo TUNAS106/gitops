@@ -1,7 +1,7 @@
 ui:
   image:
     repository: tunas106/yas-storefront
-    tag: v1.1
+    tag: v1.2
   extraEnvs:
     - name: API_BASE_PATH
       value: http://storefront-bff/api
